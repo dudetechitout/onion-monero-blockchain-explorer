@@ -5,14 +5,11 @@
     <br/>
 
     {{#testnet}}
-        <H4 style="margin:5px">Network type: Testnet</H4>
+        <H4 style="margin:5px">Testnet address: Yes</H4>
     {{/testnet}}
-    {{#stagenet}}
-        <H4 style="margin:5px">Network type: Stagenet</H4>
-    {{/stagenet}}
-    {{^testnet}}{{^stagenet}}
-        <H4 style="margin:5px">Network type: Mainnet</H4>
-    {{/stagenet}}{{/testnet}}
+    {{^testnet}}
+        <H4 style="margin:5px">Testnet address: No</H4>
+    {{/testnet}}
 
     <br/>
     <H4 style="margin:5px">Associated public keys</H4>

@@ -1,45 +1,58 @@
 
 <div>
+    <div class="main-content">
+        <div id="page-wrapper" style="padding-top: 0px;">
+            <div class="graphs">
+                <div class="grid_3 grid_4">
+                    <h3 style="text-align: center;padding-bottom: 5px;">Block hash (height): {{blk_hash}} ({{blk_height}})</h3>
+                        <div class="form-group">
+                            <div class="row">
+                            {{#have_prev_hash}}
+                               <div class="col-md-6 grid_box1">
+                                    <h5>&lt; <a href="/block/{{prev_hash}}">{{prev_hash}}</a></h5>
+                                </div>
+                            {{/have_prev_hash}}
+                            {{#have_next_hash}}
+                                <div class="col-md-6" style="text-align: right;">  
+                                    <h5><a href="/block/{{next_hash}}">{{next_hash}}</a> &gt;</h5>
+                                </div>
+                            {{/have_next_hash}}
+                            </div>
+                        </div>
+                        <table class="table" style="text-align: center;">
+                            <tbody>
+                                <tr>
+                                    <td>Timestamp [UCT] (epoch):</td><td>{{blk_timestamp}} ({{blk_timestamp_epoch}})</td>
+                                    <td>Age {{age_format}}:</td><td>{{blk_age}}</td>
+                                    <td>Δ [h:m:s]:</td><td>{{delta_time}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Major.minor version:</td><td>{{major_ver}}.{{minor_ver}}</td>
+                                    <td>Block reward:</td><td>{{blk_reward}}</td>
+                                    <td>Block size [kB]:</td><td>{{blk_size}}</td>
+                                </tr>
+                                <tr>
+                                    <td>nonce:</td><td>{{blk_nonce}}</td>
+                                    <td>Total fees:</td><td>{{sum_fees}}</td>
+                                    <td>No of txs:</td><td>{{no_txs}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-    <H4>Block hash (height): {{blk_hash}} ({{blk_height}})</H4>
-
-
-    {{#have_prev_hash}}
-    <H5>Previous block: <a href="/block/{{prev_hash}}">{{prev_hash}}</a></H5>
-    {{/have_prev_hash}}
-
-    {{#have_next_hash}}
-    <H5>Next block: <a href="/block/{{next_hash}}">{{next_hash}}</a></H5>
-    {{/have_next_hash}}
-
-
-
-    <table class="center">
-        <tr>
-            <td>Timestamp [UCT] (epoch):</td><td>{{blk_timestamp}} ({{blk_timestamp_epoch}})</td>
-            <td>Age {{age_format}}:</td><td>{{blk_age}}</td>
-            <td>Δ [h:m:s]:</td><td>{{delta_time}}</td>
-        </tr>
-        <tr>
-            <td>Major.minor version:</td><td>{{major_ver}}.{{minor_ver}}</td>
-            <td>Block reward:</td><td>{{blk_reward}}</td>
-            <td>Block size [kB]:</td><td>{{blk_size}}</td>
-        </tr>
-        <tr>
-            <td>nonce:</td><td>{{blk_nonce}}</td>
-            <td>Total fees:</td><td>{{sum_fees}}</td>
-            <td>No of txs:</td><td>{{no_txs}}</td>
-        </tr>
-    </table>
-
-    <h3>Miner reward transaction</h3>
-    <table class="center">
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h2>Miner reward transaction</h2>
+    </div>
+    <table class="table table-striped">
+    <thead>
         <tr>
             <td>hash</td>
             <td>outputs</td>
             <td>size [kB]</td>
             <td>version</td>
         </tr>
+        </thead>
+        <tbody>
         {{#coinbase_txs}}
             <tr>
                 <td><a href="/tx/{{hash}}">{{hash}}</a>
@@ -48,14 +61,19 @@
                 <td>{{version}}</td>
             </tr>
         {{/coinbase_txs}}
-
+        </tbody>
     </table>
+</div>
 
 
 
-    <h3>Transactions ({{no_txs}})</h3>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h2>Transactions ({{no_txs}})</h2>
+    </div>
     {{#have_txs}}
-        <table class="center" style="width:80%">
+        <table class="table table-striped">
+        <thead>
             <tr>
                 <td>hash</td>
                 <td>outputs</td>
@@ -65,7 +83,10 @@
                 <td>size [kB]</td>
                 <td>version</td>
             </tr>
+        </thead>
+         <tbody>
             {{#blk_txs}}
+           
                 <tr>
                     <td><a href="/tx/{{hash}}">{{hash}}</a></td>
                     <td>{{sum_outputs}}</td>
@@ -75,8 +96,10 @@
                     <td>{{tx_size}}</td>
                     <td>{{version}}</td>
                 </tr>
+                
             {{/blk_txs}}
+            </tbody>
         </table>
     {{/have_txs}}
-
+    </div>
 </div>
